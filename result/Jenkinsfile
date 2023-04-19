@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-      maven 'maven 3.6.1'
+      nodejs 'NodeJS 8.9.0'
     }
 
     stages {
@@ -12,7 +12,7 @@ pipeline {
 	    }
             steps {
                 echo 'Compiling result app'
-		dir('result'){
+		dir('worker'){
 		  sh 'npm install'
 		}
             }
@@ -24,6 +24,7 @@ pipeline {
             steps {
                 echo 'Running Unit Tests on result app'
 		dir('result'){
+		  sh 'npm install'
 		  sh 'npm test'
 		}
             }
