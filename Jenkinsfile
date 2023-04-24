@@ -94,6 +94,8 @@ pipeline {
             }
         }
 
+     }
+
         stage('result-test') {
 
       agent {
@@ -111,6 +113,8 @@ pipeline {
 		}
             }
         }
+
+    }
 
     stage('result-docker-package') {
       agent any
