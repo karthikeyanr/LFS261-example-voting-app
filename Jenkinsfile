@@ -78,42 +78,43 @@ pipeline {
     }
 
 
-        stage('result-build') {
+   stage('result-build') {
       agent {
         docker {
           image 'node:8.16.0-alpine'
         }
-	    when {
-		changeset "**/result/**"
-	    }
-            steps {
-                echo 'Compiling result app'
-		dir(path: 'result'){
-		  sh 'npm install'
-		}
-            }
+
+      }
+      when {
+        changeset '**/result/**'
+      }
+      steps {
+        echo 'Compiling result app..'
+        dir(path: 'result') {
+          sh 'npm install'
         }
 
-     }
+      }
+    }
 
-        stage('result-test') {
-
+    stage('result-test') {
       agent {
         docker {
           image 'node:8.16.0-alpine'
         }
-	    when {
-		changeset "**/result/**"
-	    }
-            steps {
-                echo 'Running Unit Tests on result app'
-		dir(path: 'result'){
-		  sh 'npm install'
-		  sh 'npm test'
-		}
-            }
+
+      }
+      when {
+        changeset '**/result/**'
+      }
+      steps {
+        echo 'Running Unit Tests on result app..'
+        dir(path: 'result') {
+          sh 'npm install'
+          sh 'npm test'
         }
 
+      }
     }
 
     stage('result-docker-package') {
