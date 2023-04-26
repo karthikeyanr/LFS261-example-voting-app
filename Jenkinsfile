@@ -64,7 +64,7 @@ pipeline {
         branch 'master'
       }
       environment{
-        def BRANCH_NAME = "${env.BRANCH_NAME.replaceFirst(/\//,'.'}"
+        def BRANCH_NAME = "${env.BRANCH_NAME.replaceFirst(/\//,'.')}"
       }
       steps {
         echo 'Packaging worker app with docker'
@@ -127,7 +127,7 @@ pipeline {
         branch 'master'
       }
       environment{
-        def BRANCH_NAME = "${env.BRANCH_NAME.replaceFirst(/\//,'.'}"
+        def BRANCH_NAME = "${env.BRANCH_NAME.replaceFirst(/\//,'.')}"
       }
       steps {
         echo 'Packaging result app with docker'
@@ -203,7 +203,7 @@ pipeline {
     stage('vote-docker-package') {
       agent any
       environment{
-        def BRANCH_NAME = "${env.BRANCH_NAME.replaceFirst(/\//,'.'}"
+        def BRANCH_NAME = "${env.BRANCH_NAME.replaceFirst(/\//,'.')}"
       }
       steps {
         echo 'Packaging vote app with docker'
